@@ -1,0 +1,33 @@
+<?php
+
+/**
+ * @file
+ * Installation code for migrate_employees module
+ */
+
+/**
+ * Implement hook_install().
+ */
+function migrate_employees_install() {
+  // Quick import and database schema definition
+  $sql = file_get_contents(__DIR__.'/employees.sql');
+  db_query($sql);
+}
+
+/**
+ * Implement hook_uninstall().
+ */
+function migrate_employees_uninstall() {
+  db_drop_table('example_titles');
+  db_drop_table('example_salaries');
+  db_drop_table('example_employees');
+}
+
+/**
+ * Implements hook_disable().
+ */
+function migrate_employees_disable() {
+  Migration::deregisterMigration('EmployeesEmployee');
+  Migration::deregisterMigration('EmployeesTitle');
+  Migration::deregisterMigration('EmployeesSalary');
+}

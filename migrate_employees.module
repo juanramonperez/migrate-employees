@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Migrate Employees feature.
+ */
+
+include_once 'migrate_employees.features.inc';
